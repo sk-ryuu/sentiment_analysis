@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  api:
+    image: teiki-ai:0.0.2
+    build:
+      context: ./
+      dockerfile: dockerfile
+    container_name: teiki-ai
+    ports:
+      - "8000:8000"
+    command: ["gunicorn", "main:app", "--workers", "4", "--certfile", "cert.pem", "--keyfile", "key.pem", "--bind", "0.0.0.0:8000"]
